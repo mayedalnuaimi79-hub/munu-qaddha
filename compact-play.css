@@ -1,0 +1,39 @@
+/* Keep all six category columns inside the viewport. No fixed game height. */
+.wrap:has(.board),.wrap:has(.question){max-width:1180px;padding:12px 12px 24px}
+.board{min-width:0;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px}
+.board-scroll{overflow:visible;padding:4px 0 8px}
+.column{min-width:0;gap:6px}
+.column .cap{height:auto;min-height:66px;padding:6px 3px;font-size:13px;line-height:1.35;text-align:center;overflow-wrap:anywhere;border-radius:10px}
+.cap span{font-size:24px}
+.point{min-width:0;height:46px;min-height:44px;padding:4px 2px;font-size:20px;border-radius:9px}
+.point:disabled{font-size:16px}
+.scorebar{display:grid;grid-template-columns:repeat(auto-fit,minmax(95px,1fr));gap:6px;overflow:visible;padding:4px 0 8px}
+.score{min-width:0;padding:7px 9px;border-radius:10px;overflow-wrap:anywhere;font-size:12px;line-height:1.4}
+.score strong{font-size:21px}.score small{font-size:10px}
+.wrap:has(.board) .steps{margin-bottom:5px}
+.wrap:has(.board) h2{font-size:23px;margin:3px 0}
+.wrap:has(.board) .footerbar{margin-top:8px;padding-top:8px;flex-direction:row;flex-wrap:wrap}
+.wrap:has(.board) .footerbar button{width:auto;flex:1;padding:8px 10px;min-height:44px;font-size:12px}
+.wrap:has(.question) .question{max-width:780px;margin:10px auto;padding:14px}
+.wrap:has(.question) .timer{width:62px;height:62px;margin:10px auto;font-size:25px;border-width:3px}
+.wrap:has(.question) .qtext{min-height:0;padding:12px 0;font-size:23px;line-height:1.6}
+.wrap:has(.question) .answer{padding:12px;margin:12px 0;font-size:20px}
+.wrap:has(.question) button{min-height:44px}
+body:has(.board)>header,body:has(.question)>header{padding:8px 14px}
+body:has(.board)>header .tagline,body:has(.question)>header .tagline,
+body:has(.board)>header .top-note,body:has(.question)>header .top-note{display:none}
+body:has(.board)>header .logo,body:has(.question)>header .logo{font-size:23px}
+body:has(.board) .release-tag,body:has(.question) .release-tag{display:none}
+@media(max-width:600px){
+ .wrap:has(.board),.wrap:has(.question){padding:8px 8px 20px}
+ .board{gap:4px}.column{gap:5px}.column .cap{font-size:10px;min-height:65px;padding:5px 2px}.cap span{font-size:20px}
+ .point{font-size:16px}.scorebar{grid-template-columns:repeat(auto-fit,minmax(90px,1fr))}
+ .wrap:has(.question) .qtext{font-size:20px}.wrap:has(.question) .question{padding:12px}
+ .wrap:has(.question) .row{gap:7px}.wrap:has(.question) .award button{flex:1;min-width:90px;font-size:13px;padding:8px}
+}
+@media(orientation:landscape) and (max-height:550px){
+ body:has(.board)>header,body:has(.question)>header{display:none}
+ .wrap:has(.board) .steps{display:none}.column .cap{min-height:43px;font-size:11px}.cap span{font-size:18px}
+ .score small{display:none}.score strong{display:inline;margin-inline-start:10px;font-size:18px}
+ .wrap:has(.question) .timer{width:48px;height:48px;font-size:21px;margin:5px auto}
+}

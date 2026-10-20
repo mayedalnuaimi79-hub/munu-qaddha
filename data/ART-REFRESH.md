@@ -1,0 +1,4 @@
+# Category art refresh
+Project assets: dist/art/rak-v2.jpg, abudhabi-v2.jpg, cars-v2.jpg, animals-v2.jpg, football-v2.jpg, ark-v2.jpg.
+Generated with the built-in image-generation tool and optimized as local JPG assets. These are illustrative images, not documentary photographs. Prompts: arid Hajar mountain ridges and road (no alpine snow); Sheikh Zayed mosque landmark; unbranded sports coupe and desert SUV; lion/giraffe/elephant savanna; football in a floodlit stadium; dinosaur in a prehistoric forest with distant fantasy obelisk. Landscape category compositions without text or logos.
+UAE artwork is a precisely constructed 2:1 flag with red hoist stripe and horizontal green, white and black bands. Golden Eagle has an original gold bird over mountains illustration. Updated history, science, puzzles and Spacetoon SVG illustrations differentiate the categories. No third-party game artwork used.

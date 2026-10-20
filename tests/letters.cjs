@@ -1,0 +1,17 @@
+const assert=require('node:assert/strict'),create=require('./ui-harness.cjs');
+let h=create();assert.equal(h.run('LETTER_BANK.length'),28);
+assert(h.run('LETTER_BANK.every(r=>r.filter((_,i)=>i>0&&i%2===0).every(a=>a.replace(/[إآا]/g,"أ").startsWith(r[0])))'));
+for(let i=0;i<25;i++)for(const n of h.run(`letterNeighbors(${i})`))assert(h.run(`letterNeighbors(${n}).includes(${i})`));
+const win=(indices,team)=>h.run(`letterWinner(Array.from({length:25},(_,i)=>({owner:${JSON.stringify(indices)}.includes(i)?${team}:null})),${team})`);
+assert(win([10,11,12,13,14],0));assert(win([0,5,10,15,20],1));assert(!win([0,6,12,18,24],0));assert(!win([10,11,13,14],0));
+h.click('letters');h.element('#letter-name-0').value='الصقور';h.element('#letter-name-1').value='الفرسان';h.click('letters-start');
+assert.equal(h.run('view'),'letters-board');assert.equal(h.run('new Set(letters.cells.map(c=>c.letter)).size'),25);
+h.click('letter-cell:0');assert(h.run('!!letters.active'));assert(!h.element('#app').innerHTML.includes('class="answer"'));
+h.click('letters-award:0');assert.equal(h.run('letters.cells[0].owner'),null);h.click('letters-reveal');h.click('letters-award:0');assert.equal(h.run('letters.cells[0].owner'),0);assert.equal(h.run('letters.turn'),1);
+h.click('letters-undo');assert.equal(h.run('letters.cells[0].owner'),null);assert(h.run('letters.active.revealed'));assert.equal(h.run('letterSeen().length'),1);
+h.click('letters-award:1');h=create(h.saved);assert.equal(h.run('letters.cells[0].owner'),1);h.click('letters-resume');assert.equal(h.run('view'),'letters-board');
+const opened=new Set();for(let n=0;n<6;n++){h.click('letter-cell:1');const q=h.run('letters.active.q');assert(!opened.has(q));opened.add(q);h.click('letters-pass')}h.click('letter-cell:1');assert.equal(h.run('letters.active'),null);
+assert(!h.element('#app').innerHTML.includes('باركود'));
+h.run('letters.cells.forEach(c=>c.owner=null);[10,11,12,13].forEach(i=>letters.cells[i].owner=0);letters.active={index:14,q:"س",answer:"ج",revealed:true}');h.click('letters-award:0');assert.equal(h.run('letters.winner'),0);h.click('letter-cell:3');assert.equal(h.run('letters.active'),null);h.click('letters-undo');assert.equal(h.run('letters.winner'),null);
+h.click('letters-exit');assert(h.element('#app').innerHTML.includes('letters-entry'));
+console.log('PASS: 168 valid Arabic initial-letter answers; hex adjacency and both win paths; reveal/award guards; turn, undo, reload, no repeat and winner lock.');
